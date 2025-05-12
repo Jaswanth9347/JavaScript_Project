@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <link rel="stylesheet" href="./CSS-Files/cart.css">
+</head>
+<body>
+       <header class="head">
+        <h1 class="head1">Ecommerce</h1>
+        <ul class="head2">
+            <li class="nav"><a href="#">Home</a></li>
+            <li><a href=#>Products</a></li>
+            <li><a href=#>About</a></li>
+            <li><a href=#>Contact</a></li>
+        </ul>
+        <ul class="head3">
+            <li class="border1"><a href="#">🡆Login</a></li>
+            <li class="border2"><a href="#" >👤Register</a></li>
+            <li class="border3"><a href="#" >🛒Cart</a></li>
+        </ul>
+    </header>
+
+      <!--  -->
+      <h3>Cart</h3> 
+      <hr>
+  
+
+  <div class="cart-wrapper">
+      <div class="cart-items">
+        <h3>Item List</h3> <hr>
+        <div id="cart-list"></div>
+      </div>
+      <div class="cart-summary">
+        <h3>Order Summary</h3>
+        <p>Products (<span id="product-count">0</span>): $<span id="subtotal">0.00</span></p>
+        <p>Shipping: $<span id="shipping">30</span></p><br>
+        <hr>
+        <p><strong>Total amount: $<span id="total">0.00</span></strong></p>
+        <button class="checkout-btn">Go to checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- empty cart -->
+
+    <div id="empty-cart" class="empty-cart-message">
+    <p>Your cart is empty.</p>
+    <button onclick="window.location.href='/HTML/Home page.html'"> ← Continue Shopping</button>
+  </div>
+
+  <footer>
+        <p class="footer">Made with ❤️ by <a href="">AchieversIT</a></p>
+    </footer>
+
+  <!--  -->
+<script>
+
+   let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const cartList = document.getElementById('cart-list');
+    const subtotalEl = document.getElementById('subtotal');
+    const totalEl = document.getElementById('total');
+    const productCountEl = document.getElementById('product-count');
+    const shipping = 30;
+
+    function renderCart() {
+      cartList.innerHTML = '';
+      let subtotal = 0;
+      let count = 0;
+
+      if (cartItems.length === 0) {
+        document.querySelector('.cart-wrapper').style.display = 'none';
+        document.getElementById('empty-cart').style.display = 'block';
+        return;
+      } else {
+        document.querySelector('.cart-wrapper').style.display = 'flex';
+        document.getElementById('empty-cart').style.display = 'none';
+      }
+
+      cartItems.forEach(item => {
+        subtotal += item.price * item.quantity;
+        count += item.quantity;
+
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <img src="${item.image}" />
+          <div class="item-info">
+            <strong>${item.title}</strong>
+            <p>${item.quantity} x $${item.price.toFixed(2)}</p>
+          </div>
+          <div class="qty-controls">
+            <button onclick="updateQty(${item.id}, -1)">−</button>
+            <span>${item.quantity}</span>
+            <button onclick="updateQty(${item.id}, 1)">+</button>
+          </div>
+        `;
+        cartList.appendChild(div);
+      });
+
+      subtotalEl.textContent = subtotal.toFixed(2);
+      totalEl.textContent = (subtotal + shipping).toFixed(2);
+      productCountEl.textContent = count;
+    }
+
+    function updateQty(id, change) {
+      const item = cartItems.find(i => i.id === id);
+      if (!item) return;
+
+      item.quantity += change;
+      if (item.quantity <= 0) {
+        cartItems = cartItems.filter(i => i.id !== id);
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+      renderCart();
+    }
+
+    renderCart();
+</script>
+
+
+</body>
+</html>
