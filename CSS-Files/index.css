@@ -107,6 +107,7 @@
       grid-template-columns: repeat(3,1fr);
       justify-content: space-around;
       margin-left: 150px;
+      
     }
 
     .product-item {
