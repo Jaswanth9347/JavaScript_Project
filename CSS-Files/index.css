@@ -10,6 +10,8 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
+                        background: rgba(0, 0, 0, 0.1);
+
             /* background: linear-gradient(pink, green); */
             align-items: center;
             padding-top: 15px;

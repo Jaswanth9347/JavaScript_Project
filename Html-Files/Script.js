@@ -1,58 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Main Page</title>
-    <link rel="stylesheet" href="/CSS-Files/index.css">
-</head>
-<body>
-    <header class="heading">
-        <h1 class="head1">Ecommerce</h1>
-        <ul class="head2">
-            <li class="nav"><a href="/Html-Files/index.html">Home</a></li>
-            <li><a href="/Html-Files/Products.html">Products</a></li>
-            <li><a href="/Html-Files/About.html">About</a></li>
-            <li><a href="/Html-Files/Contact.html">Contact</a></li>
-        </ul>
-        <ul class="head3">
-            <li class="border1"><a href="/Html-Files/Login.html">🡆Login</a></li>
-            <li class="border2"><a href="/Html-Files/Register.html" >👤Register</a></li>
-            <li class="border3"><a href="/Html-Files/Cart.html" >🛒Cart (<span id="cart-count">0</span>)</a></li>
-        </ul>
-    </header>
-    <div class="banner">
-        <div class="banner-wrapper">
-            <h1 class="Banner-heading">New season Arrivals</h1>
-            <p class="Banner-heading">This is a wider card with supporting text below as a natural lead-in to additional content.This content is a little bit longer.</p>
-    </div>
-    </div>
 
-    
-
-
-
-<!--  Filter buttons-->
-
-
-<div class="latest-products">
-    <h1>Latest Products</h1>
-
-    <div class="button">
-        <button type="button" class="buttons" data-filter="all">All</button>
-        <button type="button" class="buttons" data-filter="men's clothing">Men's Clothing</button>
-        <button type="button" class="buttons" data-filter="women's clothing">Women's Clothing</button>
-        <button type="button" class="buttons" data-filter="jewelery">Jewellery</button>
-        <button type="button" class="buttons" data-filter="electronics">Electronics</button>
-    </div>
-</div>
-
-<!-- Product container -->
-<div id="product-container"></div>
-
-
-
-<script>
 
   let productContainer = document.getElementById("product-container");
 
@@ -157,10 +103,3 @@
       });
     });
   });
-</script>
-
-<footer>
-        <p class="footer">Made with ❤️ by <a href="">AchieversIT</a></p>
-    </footer>
-</body>
-</html>
